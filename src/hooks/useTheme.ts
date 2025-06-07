@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 
-type Theme = 'light' | 'dark'
-
 export function useTheme() {
   const [isDark, setIsDark] = useState<boolean>(() => {
     // Check if we're in the browser environment

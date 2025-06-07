@@ -100,7 +100,7 @@ function App() {
             className="p-2 rounded-lg bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all duration-200 hover:shadow-lg hover:scale-105"
             title="View on GitHub"
           >
-            <Github className="w-5 h-5" />
+            <Github className="w-5 h-5 text-slate-700 dark:text-slate-300" />
           </a>
           <ThemeToggle />
         </div>
@@ -109,10 +109,10 @@ function App() {
         <div className="text-center mb-12 animate-in slide-in-from-top duration-700">
           <div className="text-6xl mb-4">🎨</div>
           <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4 leading-tight py-2">
-            Background Remover
+            bgremover.xyz
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Remove backgrounds from your images instantly
+            because who needs backgrounds anyway?
           </p>
         </div>
 
