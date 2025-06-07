@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { removeBackground } from '@imgly/background-removal'
+import { Github } from 'lucide-react'
 import { ThemeToggle } from './components/ThemeToggle'
 
 function App() {
@@ -90,8 +91,17 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Theme Toggle */}
-        <div className="flex justify-end mb-8">
+        {/* Header Controls */}
+        <div className="flex justify-end items-center space-x-4 mb-8">
+          <a 
+            href="https://github.com/bart6114/bgremover" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 rounded-lg bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 transition-all duration-200 hover:shadow-lg hover:scale-105"
+            title="View on GitHub"
+          >
+            <Github className="w-5 h-5" />
+          </a>
           <ThemeToggle />
         </div>
         

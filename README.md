@@ -1,54 +1,89 @@
-# React + TypeScript + Vite
+# Background Remover
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**🔗 Live at: [bgremover.xyz](https://bgremover.xyz)**
 
-Currently, two official plugins are available:
+A lightweight Single Page Application (SPA) that provides a web interface for [imgly's open-source background removal library](https://github.com/imgly/background-removal-js). Remove backgrounds from images directly in your browser without uploading to any server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What This Is
 
-## Expanding the ESLint configuration
+This is a web interface built around imgly's OSS background removal tool. Rather than building background removal from scratch, this SPA provides:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🎨 **Web Interface** - Frontend for imgly's background removal engine
+- ⚡ **Browser-based** - No installation required, runs in your browser
+- 🔒 **Client-side Processing** - Uses imgly's client-side processing (no server uploads)
+- 🌓 **Dark Mode** - Light and dark theme options
+- 📱 **Responsive** - Works on desktop and mobile devices
+- 🎯 **Drag & Drop** - File upload via drag/drop or file picker
+- 💾 **Download Results** - Save processed images locally
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Key Benefits
+
+- **Lightweight SPA** - Small bundle size, fast loading
+- **Built on proven OSS** - Uses imgly's established background removal library
+- **No backend required** - Pure frontend solution using WebAssembly
+- **Easy deployment** - Can be hosted on static hosting platforms
+
+## Tech Stack
+
+### Core Engine
+- **[@imgly/background-removal-js](https://github.com/imgly/background-removal-js)** - The heavy lifting (AI-powered background removal)
+
+### SPA Wrapper
+- **React 19** - Frontend framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - CSS framework
+- **Lucide React** - Icon library
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/bart6114/bgremover.git
+cd bgremover
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
 ```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and visit `http://localhost:5173`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## Deployment
+
+This project is configured for deployment on Cloudflare Pages. Simply connect your GitHub repository to Cloudflare Pages and it will automatically build and deploy.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- **[imgly/background-removal-js](https://github.com/imgly/background-removal-js)** - The core OSS library that powers this tool
+- [Lucide](https://lucide.dev) - Icon library
+- [Tailwind CSS](https://tailwindcss.com) - CSS framework
