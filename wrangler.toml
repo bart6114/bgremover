@@ -1,9 +1,6 @@
 name = "bgremover"
-compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat"]
-
-[assets]
-directory = "./dist"
+compatibility_date = "2025-04-03"
+main = "./src/index.ts"
 
 routes = [
   { pattern = "bgremover.xyz", custom_domain = true }
