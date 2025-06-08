@@ -5,7 +5,6 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = "./dist"
 
-# Uncomment and configure for custom domain:
-# routes = [
-#   { pattern = "yourdomain.com/*", custom_domain = true }
-# ]
+routes = [
+  { pattern = "bgremover.xyz/*", custom_domain = true }
+]
