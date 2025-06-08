@@ -6,5 +6,5 @@ compatibility_flags = ["nodejs_compat"]
 directory = "./dist"
 
 routes = [
-  { pattern = "bgremover.xyz/*", custom_domain = true }
+  { pattern = "bgremover.xyz", custom_domain = true }
 ]
