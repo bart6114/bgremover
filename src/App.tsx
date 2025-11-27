@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
-import { removeBackground } from '@imgly/background-removal'
 import { Github } from 'lucide-react'
 import { ThemeToggle } from './components/ThemeToggle'
+import { useBackgroundRemoval } from './hooks/useBackgroundRemoval'
 
 function App() {
   const [originalImage, setOriginalImage] = useState<string | null>(null)
@@ -10,6 +10,8 @@ function App() {
   const [isDragOver, setIsDragOver] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [originalFileName, setOriginalFileName] = useState<string>('')
+
+  const { removeBackground, progress, isModelLoaded } = useBackgroundRemoval()
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -216,9 +218,31 @@ function App() {
                       </div>
                       <div className="text-center">
                         <p className="text-xl text-slate-700 dark:text-slate-200 font-medium mb-2">
-                          Processing image...
+                          {progress.message || 'Processing image...'}
                         </p>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">This may take a moment</p>
+                        {progress.status === 'loading_model' && progress.modelProgress !== undefined && (
+                          <div className="w-64 mx-auto">
+                            <div className="bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                              <div
+                                className="bg-indigo-600 h-2.5 rounded-full transition-all duration-300"
+                                style={{ width: `${progress.modelProgress}%` }}
+                              ></div>
+                            </div>
+                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                              First-time setup: downloading AI model (~90MB)
+                            </p>
+                          </div>
+                        )}
+                        {progress.status === 'processing' && (
+                          <p className="text-sm text-slate-500 dark:text-slate-400">
+                            {isModelLoaded ? 'Analyzing image with WebGPU...' : 'This may take a moment'}
+                          </p>
+                        )}
+                        {progress.status === 'loading_model' && progress.modelProgress === undefined && (
+                          <p className="text-sm text-slate-500 dark:text-slate-400">
+                            Initializing AI model...
+                          </p>
+                        )}
                       </div>
                     </div>
                   ) : processedImage ? (
@@ -256,16 +280,25 @@ function App() {
               All processing happens <span className="font-semibold text-indigo-600 dark:text-indigo-400">client-side</span> — 
               your images never leave your device.
             </p>
-            <div className="flex items-center justify-center text-slate-500 dark:text-slate-400">
-              <span className="text-xl mr-2">💝</span>
-              <span>Built with </span>
-              <a 
-                href="https://github.com/imgly/background-removal-js" 
-                target="_blank" 
+            <div className="flex items-center justify-center text-slate-500 dark:text-slate-400 flex-wrap gap-1">
+              <span className="text-xl mr-1">💝</span>
+              <span>Powered by </span>
+              <a
+                href="https://huggingface.co/briaai/RMBG-1.4"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="ml-1 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold transition-colors duration-200 hover:underline"
+                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold transition-colors duration-200 hover:underline"
               >
-                imgly/background-removal-js
+                RMBG-1.4
+              </a>
+              <span>&</span>
+              <a
+                href="https://huggingface.co/docs/transformers.js"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold transition-colors duration-200 hover:underline"
+              >
+                Transformers.js
               </a>
             </div>
           </div>
